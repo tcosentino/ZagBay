@@ -12,6 +12,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
@@ -33,7 +34,7 @@
                 <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <form class="form-horizontal" role="form" action='insert.php?type=product'>
+            <form class="form-horizontal" role="form" method='post' action='insert.php?type=product'>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Product Name:</label>
