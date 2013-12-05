@@ -12,7 +12,7 @@
 	$db = new Database();
 
 	/* function section */
-	function productHandler() {
+	function productHandler($db) {
 		$data = $_POST;
 		print_r($data);
 		$db->insertProduct($data['name'], $data['price'], $data['shipping'], $data['description'], $data['category']);
@@ -22,7 +22,7 @@
 	// delegate based on type
 	switch ($type) {
 		case "product": 
-			productHandler(); 
+			productHandler($db); 
 			break;
 	}
 

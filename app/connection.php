@@ -1,7 +1,7 @@
 <?php 
 	class Database {
 		
-		public $dbHost = 'localhost';
+		public $dbHost = 'ada.gonzaga.edu';
 		public $dbUser = 'pmosca';
 		public $dbPass = 'pmosca1234';
 		public $dbName = 'pmosca';
@@ -43,7 +43,7 @@
 		}
 
 		public function insertProduct($name, $price, $shippingPrice, $description, $category) {
-			$query = 'INSERT INTO Product (name, price, shippingPrice, description, category) VALUES("'.$name.'","'.$price.'","'.$shippingPrice.'","'.$description.'","'.$category.'")';
+			$query = 'INSERT INTO Product VALUES(DEFAULT, "'.$name.'",'.$price.','.$shippingPrice.',"'.$description.'",'.$category.');';
 			
 			if ($stmt = $this->db->prepare($query)){ 
 				/* execute statement */
