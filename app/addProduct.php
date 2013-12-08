@@ -12,10 +12,14 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+                <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -26,40 +30,68 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="sellerHome.php">Home</a></li>
+                    <li class="active"><a href="addProduct.php">Add Product</a></li>
+                    <li><a href="addInventory.php">Add Inventory</a></li>
                 </ul>
-
-                <h3 class="text-muted">ZagBay</h3>
+                <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <div class="well well-sm">
-                <div class="row">
+            <form class="form-horizontal" role="form" method='post' action='insert.php?type=product'>
 
-                    <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-                    </div>
-
-                    <div class="col-sm-6 col-md-8">
-
-                        <h4>Product Title</h4>
-
-                        <p>
-                            $12.99<br>
-                            <i class="glyphicon glyphicon-envelope"></i>seller@email.com<br><br>
-                            Size: Medium
-                        </p>
-
-                        <p>Description</p>
-
-                        <button type="button" class="btn btn-primary">Add to cart</button>
-
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Product Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name='name' class="form-control" id="inputEmail3" placeholder="">
                     </div>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Price:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name='price' class="form-control" id="inputPassword3" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Shipping Price:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name='shipping' class="form-control" id="inputPassword3" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Quantity:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name='qty' class="form-control" id="inputPassword3" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Description:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name='description' class="form-control" id="inputPassword3" placeholder="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Category:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name='category'>
+                            <option value="0">Cat 0</option>
+                            <option value="1">Cat 1</option>
+                            <option value="2">Cat 2</option>
+                            <option value="3">Cat 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </form>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>

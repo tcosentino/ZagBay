@@ -16,6 +16,8 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+        <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -26,11 +28,11 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li class="active"><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="category.php">Category 1</a></li>
+                    <li><a href="search.php">Search</a></li>
+                    <li class="active"><a href="cart.php">Cart</a></li>
+                    <li><a href="orders.php">Orders</a></li>
                 </ul>
 
                 <h3 class="text-muted">ZagBay</h3>
@@ -119,7 +121,7 @@
                                     Continue Shopping
                                 </button></td>
                                 <td>
-                                <a type="button" class="btn btn-success" href='checkout.html'>Checkout</a>
+                                <a type="button" class="btn btn-success" href='checkout.php'>Checkout</a>
                                 </td>
                             </tr>
                         </tbody>

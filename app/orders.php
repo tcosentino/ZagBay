@@ -12,11 +12,12 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
-        <link rel="stylesheet" href="styles/bootstrap.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+                <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -27,68 +28,35 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="sellerHome.html">Home</a></li>
-                    <li class="active"><a href="addProduct.html">Add Product</a></li>
-                    <li><a href="addInventory.html">Add Inventory</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="category.php">Category 1</a></li>
+                    <li><a href="search.php">Search</a></li>
+                    <li><a href="cart.php">Cart</a></li>
+                    <li class="active"><a href="orders.php">Orders</a></li>
                 </ul>
-                <h3 class="text-muted">ZagBay - seller</h3>
+
+                <h3 class="text-muted">ZagBay</h3>
             </div>
+            
+            <h2>My Orders</h2>
 
-            <form class="form-horizontal" role="form" method='post' action='insert.php?type=product'>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Seller</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
 
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Product Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name='name' class="form-control" id="inputEmail3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Price:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name='price' class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Shipping Price:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name='shipping' class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Quantity:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name='qty' class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Description:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name='description' class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Category:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name='category'>
-                            <option value="0">Cat 0</option>
-                            <option value="1">Cat 1</option>
-                            <option value="2">Cat 2</option>
-                            <option value="3">Cat 3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </div>
-                </div>
-            </form>
+                <tbody>
+                    <tr>
+                        <td>Seller 1</td>
+                        <td>$14.99</td>
+                        <td><a href="receipt.html">details</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>

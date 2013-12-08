@@ -16,6 +16,9 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+                <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -26,72 +29,32 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li class="active"><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="sellerHome.php">Home</a></li>
+                    <li><a href="addProduct.html">Add Product</a></li>
+                    <li class="active"><a href="addInventory.php">Add Inventory</a></li>
                 </ul>
-
-                <h3 class="text-muted">ZagBay</h3>
+                <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <!-- search form -->
-            <form class="form-horizontal" role="form" action='searchResult.html'>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
 
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Search:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
-                    </div>
-                </div>
+                <tbody>
+                    <tr>
+                        <td>Product 1</td>
+                        <td><input type="text" value="3"></td>
+                        <td><a href="addProduct.html">edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Min Price:</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Max Price:</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Category:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control">
-                            <option value="">Category 1</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Seller:</label>
-                    <div class="col-sm-10">
-                        <select class="form-control">
-                            <option value="">Seller 1</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label><input type="checkbox"> In Stock</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Search!</button>
-                    </div>
-                </div>
-            </form>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>

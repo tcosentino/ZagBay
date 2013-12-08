@@ -16,6 +16,8 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+                <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -26,35 +28,57 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li class="active"><a href="orders.html">Orders</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li class="active"><a href="category.php">Category 1</a></li>
+                    <li><a href="search.php">Search</a></li>
+                    <li><a href="cart.php">Cart</a></li>
+                    <li><a href="orders.php">Orders</a></li>
                 </ul>
-
                 <h3 class="text-muted">ZagBay</h3>
             </div>
-            
-            <h2>My Orders</h2>
 
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Seller</th>
-                        <th>Price</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
+            <h2>Category 1</h2>
 
-                <tbody>
-                    <tr>
-                        <td>Seller 1</td>
-                        <td>$14.99</td>
-                        <td><a href="receipt.html">details</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row">
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Category 1 - Product 1</h3>
+	                		<p>Description</p>
+	                		<p align="center"><a href="product.php" class="btn btn-primary btn-block">Open</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Category 1 - Product 2</h3>
+	                		<p>Description</p>
+	                		<p align="center"><a href="product.php" class="btn btn-primary btn-block">Open</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Category 1 - Product 3</h3>
+	                		<p>Description</p>
+	                		<p align="center"><a href="product.php" class="btn btn-primary btn-block">Open</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+			</div>
+
+            <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            </ul>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>

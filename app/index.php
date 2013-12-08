@@ -16,6 +16,9 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
+
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -26,25 +29,30 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li class="active"><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="category.php">Category 1</a></li>
+                    <li><a href="search.php">Search</a></li>
+                    <li><a href="cart.php">Cart</a></li>
+                    <li><a href="orders.php">Orders</a></li>
                 </ul>
                 <h3 class="text-muted">ZagBay</h3>
             </div>
 
-            <h2>Search Results</h2>
+            <div class="jumbotron">
+                <h1>Welcome to ZagBay</h1>
+                <p class="lead">Always a pleasure to take your money.</p>
+            </div>
+
+            <h2>Trending Products</h2>
 
             <div class="row">
 				<div class="col-sm-6 col-md-4">
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 1</h3>
+	                		<h3>Top Product 1</h3>
 	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
 	            	</div>
 	            </div>
@@ -53,9 +61,9 @@
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 2</h3>
+	                		<h3>Top Product 2</h3>
 	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
 	            	</div>
 	            </div>
@@ -64,19 +72,47 @@
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 3</h3>
+	                		<h3>Top Product 3</h3>
 	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
 	            	</div>
 	            </div>
 			</div>
 
-            <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            </ul>
+            <h2>Top Sellers</h2>
+
+            <div class="row">
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Top Seller 1</h3>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">View Products</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Top Seller 2</h3>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">View Products</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+
+				<div class="col-sm-6 col-md-4">
+	            	<div class="thumbnail">
+	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
+	                    <div class="caption">
+	                		<h3>Top Seller 3</h3>
+	                		<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">View Products</a></p>
+	                	</div>
+	            	</div>
+	            </div>
+			</div>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>
