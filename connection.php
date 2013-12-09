@@ -1,7 +1,7 @@
 <?php 
 	class Database {
 		
-		public $dbHost = 'localhost';
+		public $dbHost = 'ada.gonzaga.edu';
 		public $dbUser = 'pmosca';
 		public $dbPass = 'pmosca1234';
 		public $dbName = 'pmosca';

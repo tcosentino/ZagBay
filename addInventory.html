@@ -12,6 +12,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
@@ -26,39 +27,32 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="sellerHome.html">Home</a></li>
+                    <li><a href="sellerHome.html">Home</a></li>
                     <li><a href="addProduct.html">Add Product</a></li>
-                    <li><a href="addInventory.html">Add Inventory</a></li>
+                    <li class="active"><a href="addInventory.html">Add Inventory</a></li>
                 </ul>
                 <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <div class="jumbotron">
-                <h1>Welcome to ZagBay</h1>
-                <p class="lead">Here are some of your selling statistics.</p>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
 
-            <h2>Selling Analytics</h2>
+                <tbody>
+                    <tr>
+                        <td>Product 1</td>
+                        <td><input type="text" value="3"></td>
+                        <td><a href="addProduct.html">edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="row">
-				<div class="col-sm-6 col-md-4">
-	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200&text=graph" alt="ALT NAME">
-	            	</div>
-	            </div>
-
-				<div class="col-sm-6 col-md-4">
-	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200&text=graph" alt="ALT NAME">
-	            	</div>
-	            </div>
-
-				<div class="col-sm-6 col-md-4">
-	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200&text=graph" alt="ALT NAME">
-	            	</div>
-	            </div>
-			</div>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
             <div class="footer">
                 <p>♥ from the Yeoman team</p>

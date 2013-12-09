@@ -10,8 +10,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="styles/main.css"/>
-        <script src="scripts/vendor/d41d8cd9.modernizr.js"></script>
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -23,22 +28,22 @@
             <div class="header">
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li class="active"><a href="search.html">Search</a></li>
+                    <li class="active"><a href="category.html">Category 1</a></li>
+                    <li><a href="search.html">Search</a></li>
                     <li><a href="cart.html">Cart</a></li>
                     <li><a href="orders.html">Orders</a></li>
                 </ul>
                 <h3 class="text-muted">ZagBay</h3>
             </div>
 
-            <h2>Search Results</h2>
+            <h2>Category 1</h2>
 
             <div class="row">
 				<div class="col-sm-6 col-md-4">
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 1</h3>
+	                		<h3>Category 1 - Product 1</h3>
 	                		<p>Description</p>
 	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
@@ -49,7 +54,7 @@
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 2</h3>
+	                		<h3>Category 1 - Product 2</h3>
 	                		<p>Description</p>
 	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
@@ -60,7 +65,7 @@
 	            	<div class="thumbnail">
 	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
 	                    <div class="caption">
-	                		<h3>Search Result - Product 3</h3>
+	                		<h3>Category 1 - Product 3</h3>
 	                		<p>Description</p>
 	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
 	                	</div>
@@ -81,7 +86,11 @@
         </div>
 
 
-        <script src="scripts/d41d8cd9.vendor.js"></script>
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -93,8 +102,23 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <script src="scripts/b6c3df09.main.js"></script>
+        <!-- build:js scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
 
-        <script src="scripts/d41d8cd9.plugins.js"></script>
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
+        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
+        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+        <script src="bower_components/sass-bootstrap/js/button.js"></script>
+        <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
 </body>
 </html>
