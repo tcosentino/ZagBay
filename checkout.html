@@ -10,8 +10,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="styles/main.css"/>
-        <script src="scripts/vendor/d41d8cd9.modernizr.js"></script>
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/bootstrap.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -32,11 +37,11 @@
                 <h3 class="text-muted">ZagBay</h3>
             </div>
 
-            <form class="form-horizontal span6" role="form">
+            <form class="form-horizontal span6" role='form'>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Card Holder's Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" title="Fill your first and last name" required="">
+                        <input type="text" class="form-control" title="Fill your first and last name" required>
                     </div>
                 </div>
                 
@@ -56,16 +61,16 @@
                     <div class="col-sm-10">
                         <div class="row-fluid">
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required="">
+                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required="">
+                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required="">
+                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required="">
+                                <input type="text" class="form-control" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required>
                             </div>
                         </div>
                     </div>
@@ -94,7 +99,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Card CVV</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" title="Three digits at back of your card" required="">
+                        <input type="text" class="form-control" title="Three digits at back of your card" required>
                     </div>
                 </div>
            
@@ -113,7 +118,11 @@
         </div>
 
 
-        <script src="scripts/d41d8cd9.vendor.js"></script>
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -125,8 +134,23 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <script src="scripts/b6c3df09.main.js"></script>
+        <!-- build:js scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
 
-        <script src="scripts/d41d8cd9.plugins.js"></script>
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
+        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
+        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+        <script src="bower_components/sass-bootstrap/js/button.js"></script>
+        <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
 </body>
 </html>
