@@ -63,6 +63,8 @@
                         </thead>
                         <tbody>
                  <?php
+				 if (!empty($items)) {
+
                     foreach($items as $item) {
 						echo '<tr><td class="col-sm-8 col-md-6">
                                 <div class="media">
@@ -102,6 +104,7 @@
                                 </button></td>
                             </tr>';
 					}
+				 }
 				?>
                             <tr>
                                 <td>   </td>
@@ -111,8 +114,10 @@
                                 <td class="text-right"><h5><strong>$
                                 <?php
 									$subtotal = 0;
-                  					foreach($items as $item) {
-										$subtotal += ($item['price'] * $item['quantity']);
+									if (!empty($items)) {
+										foreach($items as $item) {
+											$subtotal += ($item['price'] * $item['quantity']);
+										}
 									}
 									echo round($subtotal, 2);
 								
@@ -127,8 +132,10 @@
                                 <td class="text-right"><h5><strong>$
                                 <?php
 									$subShipping = 0;
-                  					foreach($items as $item) {
-										$subShipping += $item['shippingPrice'];
+									if (!empty($items)) {
+										foreach($items as $item) {
+											$subShipping += $item['shippingPrice'];
+										}	
 									}
 									echo round($subShipping, 2);
 								
