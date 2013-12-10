@@ -1,7 +1,11 @@
 <?php
     include 'connection.php';
-
+	
     $db = new Database();
+	
+	if (isset($_GET['id']) and isset($_GET['orderID'])) {
+		$db->removeProduct($_GET['id'], $_GET['orderID']);
+	}
 	$categories = $db->getCategories();
 	$items = $db->getCartItems();
 ?>
@@ -99,9 +103,11 @@
 						echo round($item['shippingPrice'],2);
 						echo '</strong></td>
                                 <td class="col-sm-1 col-md-1">
-                                <button type="button" class="btn btn-danger">
+                                <a href="cart.php?';
+						echo 'orderID='.$item['orderID'].'&id='.$item['id'];
+						echo '" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span> Remove
-                                </button></td>
+                                </a></td>
                             </tr>';
 					}
 				 }
