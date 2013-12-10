@@ -75,7 +75,7 @@
 
 	    public function updateInventory($productId, $qty) {
 		    $query = 'UPDATE Inventory SET seller=1,quantity='.$qty.' WHERE product='.$productId.';';
-
+		    
 	    	if ($stmt = $this->db->prepare($query)){
 	    		/* execute statement */
 	    		if($stmt->execute()) {
