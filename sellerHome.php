@@ -4,6 +4,7 @@
     include 'connection.php';
 
     $db = new Database();
+    $productsPerDay = $db->getProductsPerDay();
     $topProduct = $db->getTopProducts(1);
     $totalInventory = $db->getTotalInventory();
 ?>
@@ -54,7 +55,16 @@
             <div class="row">
 				<div class="col-sm-6 col-md-4">
 	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200&text=graph" alt="ALT NAME">
+	                    <h3>Products Ordered per Day</h3>
+                        <ul>
+                            <?php
+                                foreach($productsPerDay as $row) {
+                                    echo "<li>";
+                                    echo $row['day'].': '.$row['count'];
+                                    echo "</li>";
+                                }
+                            ?>
+                        </ul>
 	            	</div>
 	            </div>
 
