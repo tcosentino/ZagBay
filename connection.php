@@ -404,8 +404,8 @@
 			return $result;
 		}
 
-		public function getOrdersPerDay() {
-			$query = 'SELECT date(bo.date) as day, COUNT(*) as count FROM BuyOrder as bo JOIN ProductOrder as po ON bo.id = po.orderID JOIN Product as p ON p.id = po.product WHERE bo.buyer = 1 GROUP BY date(bo.date);';
+		public function getProductsPerDay() {
+			$query = 'SELECT date(bo.date) as day, SUM(po.quantity) as count FROM BuyOrder as bo JOIN ProductOrder as po ON bo.id = po.orderID WHERE bo.buyer = 1 GROUP BY date(bo.date);';
 			$result = "";
 			$i= 0; //index
 			

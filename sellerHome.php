@@ -4,6 +4,8 @@
     include 'connection.php';
 
     $db = new Database();
+    $productsPerDay = $db->getProductsPerDay();
+    var_dump($productsPerDay);
     $topProduct = $db->getTopProducts(1);
     $totalInventory = $db->getTotalInventory();
 ?>
