@@ -42,8 +42,24 @@
 			}
 		}
 
-		public function insertProduct($name, $price, $shippingPrice, $description, $category) {
-			$query = 'INSERT INTO Product (name, price, shippingPrice, description, category) VALUES("'.$name.'","'.$price.'","'.$shippingPrice.'","'.$description.'","'.$category.'")';
+		public function insertProduct($name, $price, $shippingPrice, $description, $imgUrl, $category) {
+			$query = 'INSERT INTO Product VALUES (DEFAULT, "'.$name.'",'.$price.','.$shippingPrice.',"'.$description.'","'.$imgUrl.'",'.$category.')';
+	echo $query;
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					//nothing
+				} else
+					echo "error";
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+		}
+
+		public function addInventory($productId, $qty) {
+			$query = 'INSERT INTO Inventory VALUES (1,'.$productId.','.$qty.')';
 			
 			if ($stmt = $this->db->prepare($query)){ 
 				/* execute statement */
@@ -93,17 +109,24 @@
 		}
 
 		// Fetch example
-		public function fetch_announcments(){
-			$query = 'SELECT * FROM announcement';
+		public function getProducts($category){
+			$query = 'SELECT * FROM Product WHERE category = '.$category.';';
 			$result = "";
+			$i= 0; //index
 		
 			if ($stmt = $this->db->prepare($query)){ 
 				/* execute statement */
 				if($stmt->execute()) {
-					$stmt->bind_result($id, $text, $expire);
+					$stmt->bind_result($id, $name, $price, $shippingPrice, $description, $imageURL, $category);
 					while($stmt->fetch()) {
-						if( strtotime('now') < strtotime($expire))
-							$result .= $text."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						$result[$i] = array('id' => $id, 
+											'name' => $name,
+											'price' => $price,
+											'shippingPrice' => $shippingPrice,
+											'description' => $description,
+											'imageURL' => $imageURL,
+											'category' => $category);
+						$i++;
 					}
 				} else
 					echo "error";
@@ -114,6 +137,223 @@
 				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 			}
 			
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getTotalInventory() {
+			$query = 'SELECT SUM(quantity) as qty FROM Inventory WHERE seller = 1;';
+			$result = "";
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($qty);
+					while($stmt->fetch()) {
+						$result =  $qty;
+					}
+				} else
+					echo "error";
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getInventory() {
+			$query = 'SELECT p.id, p.name, SUM(i.quantity) as qty FROM Inventory as i JOIN Product as p ON p.id = i.product WHERE i.seller = 1 GROUP BY p.id;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $name, $qty);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'name' => $name,
+											'qty' => $qty);
+						$i++;
+					}
+				} else
+					echo "error";
+
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getTopProducts($num = 3) {
+			$query = 'SELECT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN ProductOrder as o ON p.id = o.product ORDER BY o.quantity DESC LIMIT 0,'.$num.';';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $name, $description, $imageURL);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'name' => $name,
+											'description' => $description,
+											'imageURL' => $imageURL);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function searchProducts($maxPrice, $minPrice, $category, $seller) {
+			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE p.price < '.$maxPrice.' AND p.price > '.$minPrice.' AND p.category = '.$category.' AND s.id = '.$seller.';';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $name, $description, $imageURL);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'name' => $name,
+											'description' => $description,
+											'imageURL' => $imageURL);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getOrders() {
+			$query = 'SELECT s.firstName, s.lastName, (p.shippingPrice + (po.quantity * p.price)) as totalPrice, o.fulfilled FROM BuyOrder as o JOIN ProductOrder as po ON o.id = po.orderID JOIN Product as p ON po.product = p.id JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON s.id = i.seller;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($firstName, $lastName, $totalPrice, $fulfilled);
+					while($stmt->fetch()) {
+						$result[$i] = array('firstName' => $firstName, 
+											'lastName' => $lastName,
+											'totalPrice' => $totalPrice,
+											'fulfilled' => $fulfilled);
+						$i++;
+					}
+				} else
+					echo "error";
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getOrdersPerDay() {
+			$query = 'SELECT date(bo.date) as day, COUNT(*) as count FROM BuyOrder as bo JOIN ProductOrder as po ON bo.id = po.orderID JOIN Product as p ON p.id = po.product WHERE bo.buyer = 1 GROUP BY date(bo.date);';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($day, $count);
+					while($stmt->fetch()) {
+						$result[$i] = array('day' => $day, 'count' => $count);
+						$i++;
+					}
+				} else
+					echo "error";
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+			var_dump($result);
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getProduct($id) {
+			$query = 'SELECT p.name, p.description, s.email, p.price, p.imageURL FROM Product as p JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON s.id = i.seller WHERE p.id = '.$id.';';
+			$result = "";
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($name, $description, $email, $price, $imageURL);
+					while($stmt->fetch()) {
+						$result = array('name' => $name, 
+											'description' => $description,
+											'email' => $email,
+											'price' => $price,
+											'imageURL' => $imageURL);
+					}
+				} else
+					echo "error";
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			return $result;
+		}
+
+		public function getTopSellers() {
+			$query = 'SELECT s.firstName, s.lastName, s.imageURL FROM Seller as s JOIN Inventory as i ON s.id = i.seller JOIN Product as p ON i.product = p.id ORDER BY (i.quantity * p.price) DESC LIMIT 0,3;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($firstName, $lastName, $imageURL);
+					while($stmt->fetch()) {
+						$result[$i] = array('firstName' => $firstName, 
+											'lastName' => $lastName,
+											'imageURL' => $imageURL);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
 			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			return $result;
 		}

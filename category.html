@@ -1,4 +1,12 @@
 <!doctype html>
+
+<?php
+    include 'connection.php';
+
+    $db = new Database();
+    $db->getProducts();
+?>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -16,6 +24,7 @@
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
+        <script src="scripts/bootstrap.js"></script>
         <!-- endbuild -->
     </head>
     <body>

@@ -12,17 +12,21 @@
 	$db = new Database();
 
 	/* function section */
-	function productHandler() {
+	function productHandler($db) {
 		$data = $_POST;
 		print_r($data);
-		$db->insertProduct($data['name'], $data['price'], $data['shipping'], $data['description'], $data['category']);
+		echo "test";
+		$db->insertProduct($data['name'], $data['price'], $data['shipping'], $data['description'], $data['imgUrl'], $data['category']);
+		echo $db->db->insert_id;
+		$db->addInventory($db->db->insert_id, $data['qty']);
+		echo $db->db->insert_id;
 	}
 	/* end function section */
 
 	// delegate based on type
 	switch ($type) {
 		case "product": 
-			productHandler(); 
+			productHandler($db); 
 			break;
 	}
 

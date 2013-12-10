@@ -1,4 +1,12 @@
 <!doctype html>
+
+<?php
+    include 'connection.php';
+
+    $db = new Database();
+    $inventory = $db->getInventory();
+?>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -28,44 +36,36 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="sellerHome.html">Home</a></li>
+                    <li><a href="addProduct.html">Add Product</a></li>
+                    <li class="active"><a href="addInventory.html">Add Inventory</a></li>
                 </ul>
-
-                <h3 class="text-muted">ZagBay</h3>
+                <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <div class="well well-sm">
-                <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
 
-                    <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-                    </div>
+                <tbody>
+                    <?php
+                        foreach($inventory as $item) {
+                            echo '<tr>';
+                            echo '<td>'.$item['name'].'</td>';
+                            echo '<td>'.$item['qty'].'</td>';
+                            echo '<td><form method="post" action="sendAdd.php?id='.$item['id'].'"><input type="number" name="qty"> <button type="submit" class="btn btn-default">Add</button></form></td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </tbody>
+            </table>
 
-                    <div class="col-sm-6 col-md-8">
-
-                        <h4>Product Title</h4>
-
-                        <p>
-                            $12.99<br>
-                            <i class="glyphicon glyphicon-envelope"></i>seller@email.com<br><br>
-                            Size: Medium
-                        </p>
-
-                        <p>Description</p>
-
-                        <button type="button" class="btn btn-primary">Add to cart</button>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <p>♥ from the Yeoman team</p>
-            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
         </div>
 
@@ -91,18 +91,6 @@
         <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
-        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
-        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
-        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
-        <script src="bower_components/sass-bootstrap/js/button.js"></script>
-        <script src="bower_components/sass-bootstrap/js/popover.js"></script>
-        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
-        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -28,11 +28,11 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="category.php?id=1">Category 1</a></li>
                     <li><a href="search.html">Search</a></li>
-                    <li class="active"><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li class="active"><a href="cart.php">Cart</a></li>
+                    <li><a href="orders.php">Orders</a></li>
                 </ul>
 
                 <h3 class="text-muted">ZagBay</h3>

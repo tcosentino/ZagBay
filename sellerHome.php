@@ -1,4 +1,13 @@
 <!doctype html>
+
+<?php
+    include 'connection.php';
+
+    $db = new Database();
+    $topProduct = $db->getTopProducts(1);
+    $totalInventory = $db->getTotalInventory();
+?>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -28,61 +37,45 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="category.html">Category 1</a></li>
-                    <li class="active"><a href="search.html">Search</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="orders.html">Orders</a></li>
+                    <li class="active"><a href="sellerHome.html">Home</a></li>
+                    <li><a href="addProduct.html">Add Product</a></li>
+                    <li><a href="addInventory.html">Add Inventory</a></li>
                 </ul>
-                <h3 class="text-muted">ZagBay</h3>
+                <h3 class="text-muted">ZagBay - seller</h3>
             </div>
 
-            <h2>Search Results</h2>
+            <div class="jumbotron">
+                <h1>Welcome to ZagBay</h1>
+                <p class="lead">Here are some of your selling statistics.</p>
+            </div>
+
+            <h2>Selling Analytics</h2>
 
             <div class="row">
 				<div class="col-sm-6 col-md-4">
 	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
-	                    <div class="caption">
-	                		<h3>Search Result - Product 1</h3>
-	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
-	                	</div>
+	                    <img src="http://placehold.it/320x200&text=graph" alt="ALT NAME">
 	            	</div>
 	            </div>
 
-				<div class="col-sm-6 col-md-4">
-	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
-	                    <div class="caption">
-	                		<h3>Search Result - Product 2</h3>
-	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
-	                	</div>
-	            	</div>
-	            </div>
+				<?php
+                    echo '<div class="col-sm-6 col-md-4"><h3>Top selling product</h3><div class="thumbnail"><img src="';
+                    echo $topProduct[0]['imageURL'];
+                    echo '" alt="ALT NAME"><div class="caption"><h3>';
+                    echo $topProduct[0]['name'];
+                    echo '</h3><p>';
+                    echo $topProduct[0]['description'];
+                    echo '</p><p align="center"><a href="product.php?id='.$topProduct[0]['id'].'" class="btn btn-primary btn-block">Open</a></p>';
+                    echo '</div></div></div>';
+                ?>
 
 				<div class="col-sm-6 col-md-4">
 	            	<div class="thumbnail">
-	                    <img src="http://placehold.it/320x200" alt="ALT NAME">
-	                    <div class="caption">
-	                		<h3>Search Result - Product 3</h3>
-	                		<p>Description</p>
-	                		<p align="center"><a href="product.html" class="btn btn-primary btn-block">Open</a></p>
-	                	</div>
+	                    <h3>Total Inventory</h3>
+                        <h1><?php echo $totalInventory; ?></h1>
 	            	</div>
 	            </div>
 			</div>
-
-            <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            </ul>
-
-            <div class="footer">
-                <p>♥ from the Yeoman team</p>
-            </div>
 
         </div>
 
