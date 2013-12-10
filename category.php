@@ -6,6 +6,11 @@
     $db = new Database();
     $products = $db->getProducts($_GET['id']);
 	$categories = $db->getCategories();
+
+    foreach ($categories as $category) {
+        if($category['id'] == $_GET['id'])
+            $thisCategory = $category;
+    }
 ?>
 
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -55,7 +60,7 @@
                 <h3 class="text-muted">ZagBay</h3>
             </div>
 
-            <h2>Category 1</h2>
+            <h2><?php echo $thisCategory['name']; ?></h2>
 
             <div class="row">
                 <?php
