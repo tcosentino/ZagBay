@@ -1,3 +1,9 @@
+<?php
+    include 'connection.php';
+
+    $db = new Database();
+	$categories = $db->getCategories();
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -29,7 +35,7 @@
             <div class="header">
                 <ul class="nav nav-pills pull-right">
                     <li><a href="sellerHome.html">Home</a></li>
-                    <li class="active"><a href="addProduct.html">Add Product</a></li>
+                    <li class="active"><a href="addProduct.php">Add Product</a></li>
                     <li><a href="addInventory.html">Add Inventory</a></li>
                 </ul>
                 <h3 class="text-muted">ZagBay - seller</h3>
@@ -83,9 +89,11 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">Category:</label>
                     <div class="col-sm-10">
                         <select class="form-control" name='category'>
-                            <option value="1">Cat 1</option>
-                            <option value="2">Cat 2</option>
-                            <option value="3">Cat 3</option>
+                    <?php
+                        foreach($categories as $category) {
+                            echo '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+                        }
+                    ?>
                         </select>
                     </div>
                 </div>
