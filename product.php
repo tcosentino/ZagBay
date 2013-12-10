@@ -70,10 +70,6 @@
                 </div>
             </div>
 
-            <div class="footer">
-                <p>♥ from the Yeoman team</p>
-            </div>
-
         </div>
 
 
