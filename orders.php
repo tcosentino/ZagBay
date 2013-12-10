@@ -65,13 +65,14 @@
                 <tbody>
                     <?php
                         foreach($orders as $order) {
-                            echo '<td>'.$order['firstName'].' '.$order['lastName'].'</td>';
+                            echo '<tr><td>'.$order['firstName'].' '.$order['lastName'].'</td>';
                             echo '<td>$'.round($order['totalPrice'], 2).'</td>';
                             if($order['fulfilled']) {
                                 echo '<td>Shipped</td>';
                             } else {
                                 echo '<td>Processing</td>';
                             }
+                            echo '</tr>';
                         }
                     ?>
                 </tbody>

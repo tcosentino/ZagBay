@@ -107,6 +107,54 @@
 	    	}
 	    }
 
+	    public function addCardInfo($name, $cardType, $cardNumber, $cvv, $expire) {
+	    	$query = 'INSERT INTO CreditCard VALUES("'.$name.'", "'.$cardType.'", '.$cardNumber.', '.$cvv.', "'.$expire.'", 1);';
+	    	
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			echo "error";
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
+	    public function fulfillOrder() {
+	    	$query = 'UPDATE BuyOrder SET fulfilled = 1 WHERE fulfilled = 0;';
+	    	
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			echo "error";
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
+	    public function createCart() {
+	    	$query = 'INSERT INTO BuyOrder VALUES(DEFAULT, NOW(), 0, 1);';
+
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			echo "error";
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
 	    public function updateInventory($productId, $qty) {
 		    $query = 'UPDATE Inventory SET seller=1,quantity='.$qty.' WHERE product='.$productId.';';
 		    
