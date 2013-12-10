@@ -449,6 +449,37 @@
 
 			return $result;
 		}
+		
+		// Get cartItems
+		public function getCartItems() {
+			$query = 'SELECT p.id, p.name, po.quantity, p.imageURL, p.price, p.shippingPrice FROM BuyOrder as o JOIN Buyer as b ON b.id = o.buyer JOIN ProductOrder as po ON po.orderID = o.id JOIN Product as p ON p.id = po.product WHERE o.fulfilled = 0 AND b.id = 1;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $name, $quantity, $imageURL, $price, $shippingPrice);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'name' => $name,
+											'quantity' => $quantity,
+											'imageURL' => $imageURL,
+											'price' => $price,
+											'shippingPrice' => $shippingPrice);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			return $result;
+		}
 
 		public function __destruct(){}
 	
