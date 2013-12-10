@@ -105,7 +105,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox"> In Stock</label>
+                            <label><input type="checkbox" name='stock' checked> In Stock</label>
                         </div>
                     </div>
                 </div>

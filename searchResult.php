@@ -4,7 +4,12 @@
     include 'connection.php';
 
     $db = new Database();
-    $products = $db->searchProducts($_POST['searchText'], $_POST['maxPrice'], $_POST['minPrice'], $_POST['category'], $_POST['seller']);
+	$stock = '';
+	if(isset($_POST['stock'])) {
+		$stock = $_POST['stock'];
+	}
+    $products = $db->searchProducts($_POST['searchText'], $_POST['maxPrice'], $_POST['minPrice'], $_POST['category'], $_POST['seller'], $stock);
+	$categories = $db->getCategories();
 ?>
 
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -37,7 +42,11 @@
             <div class="header">
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="category.php?id=1">Category 1</a></li>
+                    <?php
+                        foreach($categories as $category) {
+                            echo '<li><a href="category.php?id='.$category['id'].'">'.$category['name'].'</a></li>';
+                        }
+                    ?>
                     <li class='active'><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>
@@ -49,6 +58,8 @@
 
             <div class="row">
                 <?php
+				if (!empty($products)) {
+					
                     foreach($products as $product) {
                         echo '<div class="col-sm-6 col-md-4"><div class="thumbnail"><img src="';
                         echo $product['imageURL'];
@@ -59,6 +70,9 @@
                         echo '</p><p align="center"><a href="product.php?id='.$product['id'].'" class="btn btn-primary btn-block">Open</a></p>';
                         echo '</div></div></div>';
                     }
+				} else {
+					echo 'No Results!';
+				}
                 ?>
 			</div>
 

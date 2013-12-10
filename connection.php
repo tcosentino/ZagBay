@@ -242,7 +242,7 @@
 		}
 
 		public function getTopProducts($num = 3) {
-			$query = 'SELECT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN ProductOrder as o ON p.id = o.product ORDER BY o.quantity DESC LIMIT 0,'.$num.';';
+			$query = 'SELECT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN ProductOrder as o ON p.id = o.product JOIN BuyOrder as bo ON bo.id = o.orderID WHERE bo.fulfilled = 1 GROUP BY p.id ORDER BY SUM(o.quantity) DESC LIMIT 0,'.$num.';';
 			$result = "";
 			$i= 0; //index
 			
@@ -270,7 +270,7 @@
 			return $result;
 		}
 
-		public function searchProducts($searchText, $maxPrice, $minPrice, $category, $seller) {
+		public function searchProducts($searchText, $maxPrice, $minPrice, $category, $seller, $stock) {
 				
 			$maxContraint = '';
 			if ($maxPrice != '') {
@@ -292,7 +292,14 @@
 				$sellerConstraint = ' AND s.id = '.$seller;
 			}
 			
-			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE LOWER(p.name) LIKE "%'.$searchText.'%" '.$maxContraint.$minContraint.$categoryContraint.$sellerConstraint.';';
+			$stockConstraint = '';
+			if ($stock != '') {
+				$stockConstraint = ' AND i.quantity > 0';
+			} else {
+				$stockConstraint = ' AND i.quantity < 1';
+			}
+			
+			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE LOWER(p.name) LIKE "%'.$searchText.'%" '.$maxContraint.$minContraint.$categoryContraint.$sellerConstraint.$stockConstraint;
 			//echo $query;
 			$result = "";
 			$i= 0; //index
@@ -402,7 +409,7 @@
 		}
 
 		public function getTopSellers() {
-			$query = 'SELECT s.firstName, s.lastName, s.imageURL FROM Seller as s JOIN Inventory as i ON s.id = i.seller JOIN Product as p ON i.product = p.id ORDER BY (i.quantity * p.price) DESC LIMIT 0,3;';
+			$query = 'SELECT DISTINCT s.firstName, s.lastName, s.imageURL FROM Seller as s JOIN Inventory as i ON s.id = i.seller JOIN Product as p ON i.product = p.id ORDER BY (i.quantity * p.price) DESC LIMIT 0,3;';
 			$result = "";
 			$i= 0; //index
 			
