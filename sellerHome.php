@@ -59,7 +59,7 @@
 	            </div>
 
 				<?php
-                    echo '<div class="col-sm-6 col-md-4"><h3>Top selling product</h3><div class="thumbnail"><img src="';
+                    echo '<div class="col-sm-6 col-md-4"><div class="thumbnail"><h3>Top selling product</h3><img src="';
                     echo $topProduct[0]['imageURL'];
                     echo '" alt="ALT NAME"><div class="caption"><h3>';
                     echo $topProduct[0]['name'];
