@@ -38,7 +38,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="category.php?id=1">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
+                    <li><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>
                 </ul>
@@ -59,7 +59,7 @@
 
                         <p>
                             $<?php echo round($product['price'], 2); ?><br>
-                            <i class="glyphicon glyphicon-envelope"></i><?php echo $product['email']; ?><br><br>
+                            <i class="glyphicon glyphicon-envelope"></i><a href="mailto:<?php echo $product['email']; ?>"><?php echo $product['email']; ?></a><br><br>
                         </p>
 
                         <p><?php echo $product['description']; ?></p>

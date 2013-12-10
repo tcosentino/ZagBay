@@ -38,7 +38,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="category.php?id=1">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
+                    <li><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li class="active"><a href="orders.php">Orders</a></li>
                 </ul>
@@ -63,9 +63,9 @@
                             echo '<td>'.$order['firstName'].' '.$order['lastName'].'</td>';
                             echo '<td>$'.round($order['totalPrice'], 2).'</td>';
                             if($order['fulfilled']) {
-                                echo '<td>yes</td>';
+                                echo '<td>Shipped</td>';
                             } else {
-                                echo '<td>no</td>';
+                                echo '<td>Processing</td>';
                             }
                         }
                     ?>

@@ -1,4 +1,13 @@
 <!doctype html>
+
+<?php
+    include 'connection.php';
+
+    $db = new Database();
+	$categories = $db->getCategories();
+    $sellers = $db->getSellers();
+?>
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -30,7 +39,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="category.php?id=1">Category 1</a></li>
-                    <li class='active'><a href="search.html">Search</a></li>
+                    <li class='active'><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>
                 </ul>
@@ -44,7 +53,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Search:</label>
                     <div class="col-sm-10">
-                        <input type="text" name='search' class="form-control" id="inputEmail3" placeholder="">
+                        <input type="text" name='searchText' class="form-control" id="inputEmail3" placeholder="">
                     </div>
                 </div>
 
@@ -66,7 +75,12 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">Category:</label>
                     <div class="col-sm-10">
                         <select class="form-control" name='category'>
-                            <option value="1">Category 1</option>
+                        <option value="0">All Categories</option>
+                    <?php
+                        foreach($categories as $category) {
+                            echo '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+                        }
+                    ?>
                         </select>
                     </div>
                 </div>
@@ -75,11 +89,15 @@
                     <label for="inputPassword3" class="col-sm-2 control-label">Seller:</label>
                     <div class="col-sm-10">
                         <select class="form-control" name='seller'>
-                            <option value="1">Seller 1</option>
+                        <option value="0">All Sellers</option>
+                    <?php
+                        foreach($sellers as $seller) {
+                            echo '<option value="'.$seller['id'].'">'.$seller['firstName'].' '.$seller['lastName'].'</option>';
+                        }
+                    ?>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">

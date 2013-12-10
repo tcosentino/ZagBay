@@ -30,7 +30,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="category.php?id=1">Category 1</a></li>
-                    <li><a href="search.html">Search</a></li>
+                    <li><a href="search.php">Search</a></li>
                     <li class="active"><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>
                 </ul>
