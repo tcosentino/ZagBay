@@ -227,6 +227,7 @@
 			}
 			
 			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE LOWER(p.name) LIKE "%'.$searchText.'%" '.$maxContraint.$minContraint.$categoryContraint.$sellerConstraint.';';
+			//echo $query;
 			$result = "";
 			$i= 0; //index
 			

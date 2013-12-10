@@ -38,7 +38,11 @@
             <div class="header">
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="category.php?id=1">Category 1</a></li>
+                    <?php
+                        foreach($categories as $category) {
+                            echo '<li><a href="category.php?id='.$category['id'].'">'.$category['name'].'</a></li>';
+                        }
+                    ?>
                     <li class='active'><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>

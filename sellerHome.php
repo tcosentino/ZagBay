@@ -38,7 +38,7 @@
             <div class="header">
                 <ul class="nav nav-pills pull-right">
                     <li class="active"><a href="sellerHome.html">Home</a></li>
-                    <li><a href="addProduct.html">Add Product</a></li>
+                    <li><a href="addProduct.php">Add Product</a></li>
                     <li><a href="addInventory.html">Add Inventory</a></li>
                 </ul>
                 <h3 class="text-muted">ZagBay - seller</h3>
