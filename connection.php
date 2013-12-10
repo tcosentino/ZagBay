@@ -204,8 +204,29 @@
 			return $result;
 		}
 
-		public function searchProducts($maxPrice, $minPrice, $category, $seller) {
-			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE p.price < '.$maxPrice.' AND p.price > '.$minPrice.' AND p.category = '.$category.' AND s.id = '.$seller.';';
+		public function searchProducts($searchText, $maxPrice, $minPrice, $category, $seller) {
+				
+			$maxContraint = '';
+			if ($maxPrice != '') {
+				$maxContraint = ' AND p.price < '.$maxPrice;
+			}
+
+			$minContraint = '';
+			if ($minPrice != '') {
+				$minContraint = ' AND p.price > '.$minPrice;
+			}
+			
+			$categoryContraint = '';
+			if ($category = 0) {
+				$categoryConstraint = ' AND p.category = '.$category;
+			}
+			
+			$sellerConstraint = '';
+			if ($seller = 0) {
+				$sellerConstraint = ' AND s.id = '.$seller;
+			}
+			
+			$query = 'SELECT DISTINCT p.id, p.name, p.description, p.imageURL FROM Product as p JOIN Category as c ON c.id = p.category JOIN Inventory as i ON i.product = p.id JOIN Seller as s ON i.seller = s.id WHERE LOWER(p.name) LIKE "%'.$searchText.'%" '.$maxContraint.$minContraint.$categoryContraint.$sellerConstraint.';';
 			$result = "";
 			$i= 0; //index
 			
@@ -341,6 +362,61 @@
 			return $result;
 		}
 		
+		// Gets sellers
+		public function getSellers() {
+			$query = 'SELECT id, firstName, lastName FROM Seller ORDER BY lastName ASC;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $firstName, $lastName);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'firstName' => $firstName,
+											'lastName' => $lastName);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			return $result;
+		}
+		
+		// Gets categories
+		public function getCategories() {
+			$query = 'SELECT id, name FROM Category ORDER BY name ASC;';
+			$result = "";
+			$i= 0; //index
+			
+			if ($stmt = $this->db->prepare($query)){ 
+				/* execute statement */
+				if($stmt->execute()) {
+					$stmt->bind_result($id, $name);
+					while($stmt->fetch()) {
+						$result[$i] = array('id' => $id, 
+											'name' => $name);
+						$i++;
+					}
+				} else
+					echo "error";
+			
+				/* close statement */
+				$stmt->close();
+			} else {
+				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			return $result;
+		}
+
 		public function __destruct(){}
 	
 	}

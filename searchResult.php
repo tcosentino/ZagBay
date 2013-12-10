@@ -4,7 +4,7 @@
     include 'connection.php';
 
     $db = new Database();
-    $products = $db->searchProducts($_POST['maxPrice'], $_POST['minPrice'], $_POST['category'], $_POST['seller']);
+    $products = $db->searchProducts($_POST['searchText'], $_POST['maxPrice'], $_POST['minPrice'], $_POST['category'], $_POST['seller']);
 ?>
 
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -38,7 +38,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="category.php?id=1">Category 1</a></li>
-                    <li class='active'><a href="search.html">Search</a></li>
+                    <li class='active'><a href="search.php">Search</a></li>
                     <li><a href="cart.php">Cart</a></li>
                     <li><a href="orders.php">Orders</a></li>
                 </ul>
