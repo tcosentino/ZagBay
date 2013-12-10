@@ -41,25 +41,8 @@
 				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 			}
 		}
-
 		public function insertProduct($name, $price, $shippingPrice, $description, $imgUrl, $category) {
 			$query = 'INSERT INTO Product VALUES (DEFAULT, "'.$name.'",'.$price.','.$shippingPrice.',"'.$description.'","'.$imgUrl.'",'.$category.')';
-	echo $query;
-			if ($stmt = $this->db->prepare($query)){ 
-				/* execute statement */
-				if($stmt->execute()) {
-					//nothing
-				} else
-					echo "error";
-				/* close statement */
-				$stmt->close();
-			} else {
-				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
-			}
-		}
-
-		public function addInventory($productId, $qty) {
-			$query = 'INSERT INTO Inventory VALUES (1,'.$productId.','.$qty.')';
 			
 			if ($stmt = $this->db->prepare($query)){ 
 				/* execute statement */

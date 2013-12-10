@@ -18,6 +18,7 @@
 		echo "test";
 		$db->insertProduct($data['name'], $data['price'], $data['shipping'], $data['description'], $data['imgUrl'], $data['category']);
 		echo $db->db->insert_id;
+		echo "inv";
 		$db->addInventory($db->db->insert_id, $data['qty']);
 		echo $db->db->insert_id;
 	}
