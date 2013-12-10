@@ -73,6 +73,40 @@
 	    	}
 	    }
 
+	    public function addToCart($productId) {
+	    	$query = 'INSERT INTO ProductOrder VALUES ((SELECT id FROM BuyOrder WHERE fulfilled = 0 LIMIT 1), '.$productId.', 1)';
+
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			// try updating
+	    			$this->incCartItem($productId);
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
+	    public function incCartItem($productId) {
+	    	$query = 'UPDATE ProductOrder SET quantity = quantity + 1 WHERE product = '.$productId.' AND orderID = (SELECT id FROM BuyOrder WHERE fulfilled = 0 LIMIT 1)';
+	    	
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			// try updating
+	    			$this->incCartItem($productId);
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
 	    public function updateInventory($productId, $qty) {
 		    $query = 'UPDATE Inventory SET seller=1,quantity='.$qty.' WHERE product='.$productId.';';
 		    

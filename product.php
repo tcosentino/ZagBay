@@ -64,7 +64,7 @@
 
                         <p><?php echo $product['description']; ?></p>
 
-                        <button type="button" class="btn btn-primary">Add to cart</button>
+                        <form method='post' action="addToCart.php?id=<?php echo $_GET['id']; ?>"><button type="submit" class="btn btn-primary" >Add to cart</button></form>
 
                     </div>
                 </div>
