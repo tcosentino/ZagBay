@@ -131,7 +131,7 @@
                                     Continue Shopping
                                 </button></td>
                                 <td>
-                                <a type="button" class="btn btn-success" href='checkout.html'>Checkout</a>
+                                <a type="button" class="btn btn-success" href='checkout.php'>Checkout</a>
                                 </td>
                             </tr>
                         </tbody>
