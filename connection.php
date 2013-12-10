@@ -57,6 +57,38 @@
 			}
 		}
 
+		public function addInventory($productId, $qty) {
+		    $query = 'INSERT INTO Inventory VALUES (1,'.$productId.','.$qty.');';
+
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			echo "error";
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
+	    public function updateInventory($productId, $qty) {
+		    $query = 'UPDATE Inventory SET seller=1,quantity='.$qty.' WHERE product='.$productId.';';
+
+	    	if ($stmt = $this->db->prepare($query)){
+	    		/* execute statement */
+	    		if($stmt->execute()) {
+	    			//nothing
+	    		} else
+	    			echo "error";
+	    		/* close statement */
+	    		$stmt->close();
+	    	} else {
+	    		echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+	    	}
+	    }
+
 		// Update example
 		public function editAnnouncment($id, $text, $start, $end){
 			$query = 'UPDATE announcement SET  start = "'.$start.'", expire = "'.$end.'", text = "'.$text.'" WHERE  id ='.$id;
