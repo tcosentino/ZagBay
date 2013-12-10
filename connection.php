@@ -424,7 +424,7 @@
 			} else {
 				echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 			}
-			var_dump($result);
+			
 			//$result -= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 			return $result;
 		}
