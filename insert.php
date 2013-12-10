@@ -14,13 +14,22 @@
 	/* function section */
 	function productHandler($db) {
 		$data = $_POST;
-		print_r($data);
-		echo "test";
+
 		$db->insertProduct($data['name'], $data['price'], $data['shipping'], $data['description'], $data['imgUrl'], $data['category']);
-		echo $db->db->insert_id;
-		echo "inv";
+
 		$db->addInventory($db->db->insert_id, $data['qty']);
-		echo $db->db->insert_id;
+
+		header('Location: sellerHome.php');
+	}
+
+	function creditHandler($db) {
+		$data = $_POST;
+
+		$db->addCardInfo($data['name'], $data['cardType'], $data['cardNumber'], $data['cvv'], $data['expire']);
+		$db->fulfillOrder();
+		$db->createCart();
+
+		header('Location: index.php');
 	}
 	/* end function section */
 
@@ -28,6 +37,9 @@
 	switch ($type) {
 		case "product": 
 			productHandler($db); 
+			break;
+		case "credit":
+			creditHandler($db);
 			break;
 	}
 
